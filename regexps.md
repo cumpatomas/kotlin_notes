@@ -19,7 +19,7 @@ We can easily solve this problem using the PARK pattern. The pattern means that 
 
 ![img_1.png](img_1.png)
 
-Here are some explanations:  
+Here are some explanations: 
 
 the word PARK exactly matches our pattern;
 the word SPARK matches our pattern because it has a suitable substring;
