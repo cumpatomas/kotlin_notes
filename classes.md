@@ -160,7 +160,7 @@ class Size(_width: Int, _height: Int) {
     }
 
     // 5: the area property is initialized
-    val area = width * height 
+    val area = width * height
 }
 ```
 **note:** In the examples above, the parameter names begin with underscores (_width, _height) to distinguish them from class members (width, height). It is a useful coding convention widely accepted in various programming languages.
