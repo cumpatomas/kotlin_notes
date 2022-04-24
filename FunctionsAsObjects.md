@@ -101,9 +101,11 @@ _**fun isNotDot(c: Char): Boolean = c != '.'**_
 
 Then we can do something like this:
 
+```kotlin
 val originalText = "I don't know... what to say..."
 val textWithoutDots = originalText.filter(::isNotDot)
-As a result, the textWithoutDots string is equal to "I don't know what to say".
+```
+As a result, the textWithoutDots string is equal to _**"I don't know what to say"**_.
 
 ### Conclusion
 It was the basis of a huge programming paradigm which is Functional programming. Having function objects, we can create functions that receive other functions as arguments. This paradigm is frequently used in Kotlin standard library. We discussed a few examples, but you will definitely find more in the following topics.
