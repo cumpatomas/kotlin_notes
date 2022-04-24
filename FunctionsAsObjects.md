@@ -14,7 +14,7 @@ For example, an Int is a first-class citizen in Kotlin. To clarify the fourth re
 
 In fact, functions are first-class citizens in the Kotlin language too. Let's prove it! In this topic, we will cover only the first four requirements. We will discuss how to create functions at runtime in the next topic.
 
-###Function types
+### Function types
 First of all, Kotlin has built-in support for function types. The syntax of a function type is this:
 
 (parameters' types) -> return value type
