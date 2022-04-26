@@ -58,3 +58,16 @@ println(first == second) // false
 println(first != second) // true
 ```
 
+### Filter Method
+The String type has the filter method to filter symbols. How does it know which symbols to remove from the string and which ones to leave in it? The answer is simple: this method takes a predicate as an argument and then uses it for internal computations. A predicate is a function that takes an argument and returns a Boolean result. So in the filter method, the predicate says if the symbol should be left and has the **_(Char) -> Boolean_** type.
+
+Let's try to use this method. If we want to remove dots from a string, we declare this predicate:
+
+```kotlin
+fun isNotDot(c: Char): Boolean = c != '.'
+// Then we can do something like this:
+
+val originalText = "I don't know... what to say..."
+val textWithoutDots = originalText.filter(::isNotDot)
+```
+As a result, the **textWithoutDots** string is equal to _"I don't know what to say"_
