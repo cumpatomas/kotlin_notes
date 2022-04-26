@@ -59,7 +59,7 @@ println(first != second) // true
 ```
 
 ### Filter Method
-The String type has the filter method to filter symbols. How does it know which symbols to remove from the string and which ones to leave in it? The answer is simple: this method takes a predicate as an argument and then uses it for internal computations. A predicate is a function that takes an argument and returns a Boolean result. So in the filter method, the predicate says if the symbol should be left and has the **_(Char) -> Boolean_** type.
+The String type has the filter method to filter symbols. How does it know which symbols to remove from the string and which ones to leave in it? The answer is simple: this method takes a predicate as an argument and then uses it for internal computations. <u>A **predicate** is a function that takes an argument and returns a Boolean result</u>. So in the filter method, the predicate says if the symbol should be left and has the **_(Char) -> Boolean_** type.
 
 Let's try to use this method. If we want to remove dots from a string, we declare this predicate:
 
@@ -71,3 +71,59 @@ val originalText = "I don't know... what to say..."
 val textWithoutDots = originalText.filter(::isNotDot)
 ```
 As a result, the **textWithoutDots** string is equal to _"I don't know what to say"_
+
+### Count
+By default, **.count()** returns the total
+number of characters in a string. But count also has a variation that accepts a function as a parameter. This
+function has a single Char parameter and returns a Boolean. This version of the count function calls the
+provided function on every character in the String and returns the total number of true results returned
+```kotlin
+"Mississippi".count({ letter -> letter == 's' })
+```
+When defining lambdas that accept exactly one argument, the **_it_** identifier is available as a convenient alternative to
+specifying the parameter name. Both **it** and a named parameter are valid when you have a lambda that has only <u>one
+parameter</u>.
+
+_**it**_ is convenient in that it requires no variable naming, but it is not very descriptive about the data it represents. We
+suggest that when you are working with more complex lambda expressions, or with nested lambdas (lambdas
+within lambdas), you should name the parameter.
+On the other hand, **it** is great for shorter expressions. For example, it would allow the **count()** function call you
+saw earlier, to count the s’s in “Mississippi,” to be written more concisely, like this:
+```kotlin
+"Mississippi".count({ it == 's' })
+```
+Because of the simplicity of this example, this logic is clear even without an argument name.
+
+### CompareTo
+Compares this object with the specified object for string alphabetical order. Returns zero if this object is equal to the specified other object, a negative number if it's less than other, or a positive number if it's greater than other.
+```kotlin
+fun main() {
+println("a".compareTo("z")) // -25
+println("a".compareTo("a")) // 0
+println("a".compareTo("c")) // -2
+println("ace".compareTo("car")) // -2
+println("cars".compareTo("car")) // 1
+}
+```
+### get
+Returns the character of this string at the specified index.
+```kotlin
+println("missisippi".get(4)) // i
+```
+
+### plus
+```kotlin
+println("a".plus('f')) // af
+println("a".plus(200)) // a200
+println("a".plus("lone")) // alone
+```
+### subSequence
+Returns a new character sequence that is a subsequence of this character sequence, starting at the specified startIndex and ending right before the specified endIndex.
+```kotlin
+println("alone".subSequence(1, 3)) // lo ---- (we must input 2 int for start index and last one)
+println("alone".substring(1, 3)) // lo
+println("alone".substring(1)) // lone ------(we can omit the last index and it takes the last one as default)
+```
+
+
+
