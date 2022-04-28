@@ -72,6 +72,34 @@ val textWithoutDots = originalText.filter(::isNotDot)
 ```
 As a result, the **textWithoutDots** string is equal to _"I don't know what to say"_
 
+Rewrite it to pass a lambda:
+
+```.kotlin
+val originalText = "I don't know... what to say..."
+val textWithoutDots = originalText.filter({ c: Char -> c != '.' })
+```
+It works! First of all, Kotlin infers types of many objects, and here specifying the c type isn't necessary:
+
+```kotlin
+originalText.filter({ c -> c != '.' })
+```
+Second, there are situations when the lambda is passed as the last argument. This is the case. Kotlin provides a way to eliminate these bracket sequences ({ }), allowing to write the lambda outside the parentheses:
+
+```kotlin
+originalText.filter() { c -> c != '.' }
+```
+If the parentheses are left empty after this operation, you can remove them:
+
+```kotlin
+originalText.filter { c -> c != '.' }
+```
+Finally, when there is a single parameter in a lambda, there is an opportunity to skip it. The parameter is available under the it name. The final version of the code that removes dots is this:
+
+```kotlin
+val originalText = "I don't know... what to say..."
+val textWithoutDots = originalText.filter { it != '.' }
+
+```
 ### Count
 By default, **.count()** returns the total
 number of characters in a string. But count also has a variation that accepts a function as a parameter. This
