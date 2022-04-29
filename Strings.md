@@ -119,6 +119,10 @@ On the other hand, **it** is great for shorter expressions. For example, it woul
 saw earlier, to count the s’s in “Mississippi,” to be written more concisely, like this:
 ```kotlin
 "Mississippi".count({ it == 's' })
+
+// or even more simple! :)
+
+"Mississippi".count { it == 's' }
 ```
 Because of the simplicity of this example, this logic is clear even without an argument name.
 
@@ -152,6 +156,26 @@ println("alone".subSequence(1, 3)) // lo ---- (we must input 2 int for start ind
 println("alone".substring(1, 3)) // lo
 println("alone".substring(1)) // lone ------(we can omit the last index and it takes the last one as default)
 ```
+### Replace
 
+Returns a new string with all occurrences of oldChar replaced with newChar.
+```kotlin
+val inputString0 = "Mississippi"
 
+println(inputString0.replace('s', 'z')) // Mizzizzippi
+```
+If we want to replace multiple symbols from an Array (or erase them) we can use the Regex like this:
 
+`.replace("""[\[\],]""".toRegex(), "")`
+
+This will erase the [, ], and commas symbols: 
+```kotlin
+val list = arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9)
+val pairs = list.filter { it % 2 == 0 }
+println("pair numbers: " + pairs)
+println("pair numbers: " + pairs.toString().replace("""[\[\],]""".toRegex(), ""))
+
+// pair numbers: [2, 4, 6, 8]
+// pair numbers: 2 4 6 8
+```
+Otherwise we should have used the **replace()** function 3 times.
