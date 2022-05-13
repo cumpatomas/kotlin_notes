@@ -151,3 +151,57 @@ println(increment(40))  // 41
 println(triple(4))      // 12
 println(triple(40))     // 120
 ```
+
+### An Overview of Kotlin Functions and Lambdas
+Having covered the basics of functions in Kotlin it is now time to look at the concept of lambda expressions.
+Essentially, lambdas are self-contained blocks of code. The following code, for example, declares a lambda,
+assigns it to a variable named sayHello and then calls the function via the lambda reference:
+```kotlin
+val sayHello = { println("Hello") }
+sayHello()
+```
+Lambda expressions may also be configured to accept parameters and return results. The syntax for this is as
+follows:
+
+`{<para name>: <para type>, <para name> <para type>, ... ->
+// Lambda expression here
+}`
+
+The following lambda expression, for example, accepts two integer parameters and returns an integer result:
+```kotlin
+val multiply = { val1: Int, val2: Int -> val1 * val2 }
+val result = multiply(10, 20)
+```
+Note that the above lambda examples have assigned the lambda code block to a variable. This is also possible
+when working with functions. Of course, the following syntax will execute the function and assign the result of
+that execution to a variable, instead of assigning the function itself to the variable:
+
+`val myvar = myfunction()`
+
+To assign a function reference to a variable, simply remove the parentheses and prefix the function name with
+double colons (::) as follows. The function may then be called simply by referencing the variable name:
+```kotlin
+val mavar = ::myfunction
+myvar()
+```
+A lambda block may be executed directly by placing parentheses at the end of the expression including any
+arguments. The following lambda directly executes the multiplication lambda expression multiplying 10 by 20.
+```kotlin
+val result = { val1: Int, val2: Int -> val1 * val2 }(10, 20)
+```
+The last expression within a lambda serves as the expressions return value (hence the value of 200 being assigned
+to the result variable in the above multiplication examples). In fact, unlike functions, lambdas do not support
+the return statement. In the absence of an expression that returns a result (such as an arithmetic or comparison
+expression), simply declaring the value as the last item in the lambda will cause that value to be returned. The
+following lambda returns the Boolean true value after printing a message:
+```kotlin
+val result = { println("Hello"); true }()
+```
+Similarly, the following lambda simply returns a string literal:
+```kotlin
+val nextmessage = { println("Hello"); "Goodbye" }()
+```
+
+A particularly useful feature of lambdas and the ability to create function references is that they can be both
+passed to functions as arguments and returned as results. This concept, however, requires an understanding of
+function types and higher-order functions.
