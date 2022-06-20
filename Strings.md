@@ -179,3 +179,172 @@ println("pair numbers: " + pairs.toString().replace("""[\[\],]""".toRegex(), "")
 // pair numbers: 2 4 6 8
 ```
 Otherwise we should have used the **replace()** function 3 times.
+
+## toString()
+
+Sometimes we need to submit information as a string, for example, to a console for debugging. How can we represent non-text objects as a string so we can output them in a readable way? This is where we use the toString() function.
+
+### Introduction
+Let’s say we have three boxes each filled with a different kind of berry: raspberry, strawberry, and blueberry. We need information about the weight of each of these boxes. Let’s print it:
+```kotlin
+val raspberryWeight = 10
+val strawberryWeight = 15
+val blueberryWeight = 20
+
+println(raspberryWeight) //10
+println(strawberryWeight) //15
+println(blueberryWeight) //20
+
+```
+This seems fine. Now let’s create a BerryHolder class that will store the weight of the boxes. Let's try to print these values again:
+```kotlin
+class BerryHolder(val weight: Int)
+
+val raspberryWeight = BerryHolder(10)
+val strawberryWeight = BerryHolder(15)
+val blueberryWeight = BerryHolder(20)
+
+println(raspberryWeight) // BerryHolder@6f496d9f
+println(strawberryWeight) // BerryHolder@723279cf
+println(blueberryWeight) // BerryHolder@10f87f48
+
+```
+Well, this certainly doesn’t look like the result we want to see.
+
+Why did this happen? To figure this out, we need to really understand how fun println(message: Any?) works. If we look at the signature of println(), we'll see that it receives a message of the type Any?. Keep in mind that in Kotlin, Any? is a superclass for any class, both standard and customized. So, println() must accept an object of any type and return text, that is, something of the String type.
+
+If we need to manage the behavior of a function for objects of completely different types, we have to convert the object for printing to the String type before the output. println() implicitly calls the toString() function, which converts message to a string.
+
+The toString() function exists specifically to represent objects as strings. So, why does it work so differently with different types?
+
+### Default behavior
+The toString() function is defined for the type Any?. This means that all the classes inherit all of the Any? methods, including toString().
+
+The point is that toString() for Any? returns the class name and memory location as a string. For some classes, the default behavior is adjusted for correct processing. For example, take Int or Double:
+
+```kotlin
+val nonString = 1.0
+
+println(nonString.toString())   // 1.0
+println(nonString)  // 1.0
+
+/* The output is the same: println just implicitly called toString() for Double object */
+
+
+```
+However, for most classes, by default, toString() still returns the name of the class and the address where the object is located in the memory. Usually, we want to get text information about objects in another way, so it makes sense to override toString() for our data type.
+
+### Overriding toString()
+It seems that our problems can be solved by redefining the toString() method. toString() is automatically defined for all the classes you create, and you can override it for any class. This can be done the same way as for any other function. Let’s take our BerryHolder class as an example:
+````kotlin
+class BerryHolder(val weight: Int) {
+override fun toString(): String {
+return weight.toString()
+}
+}
+println(BerryHolder(10)) // 10
+
+````
+Success! This time, printing objects of our class goes as intended.
+
+Let’s take a look at a more complex example. Say, we’re developing an electronic library. First, we have a class User that contains the user’s ID and their login information. We want to be able to output the information about the objects of this class as a String so that we can see the full information with brief explanations. Something like this: User{id=id_value, login=login_value, email=email_value}.
+
+Let’s override the toString() function for our User class:
+```kotlin
+class User(val id: Int, val login: String, val email: String) {
+override fun toString(): String {
+return "User{id=$id, login=$login, email=$email}"
+}
+}
+
+val user = User(1, "uncle_bob", "rmartin@objectmentor.com")
+println(user) // User{id=1, login=uncle_bob, email=rmartin@objectmentor.com}
+
+```
+The output is adapted for our purposes in a readable way, and there is no memory addressing. Great!
+
+### Overriding toString(): Inheritance
+Another reason for the overriding the toString() method is working with superclasses, or parent classes. Here, the general rules of inheritance continue to apply. If the toString() method is defined in the parent class, the derived class will use this particular override.
+
+Let’s go back to our example. The database of the electronic library may contain data not only about the users but also about the authors. Let’s extend the class User with the class Author, which will contain a list of publications (books):
+
+```kotlin
+open class User(val id: Int, val login: String, val email: String) {
+override fun toString(): String {
+return "User{id=$id, login=$login, email=$email}"
+}
+}
+
+class Author(id: Int, login: String, email: String, val books: String): User(id, login, email) {
+
+}
+
+val user = User(1, "marys01", "mary0101@gmail.com")
+val author = Author(2, "srafael", "rsabatini@gmail.com", "Captain Blood: His Odyssey")
+
+println(user)   // User{id=1, login=marys01, email=mary0101@gmail.com}
+println(author) // User{id=2, login=srafael, email=rsabatini@gmail.com}
+```
+The toString() method is not defined for the class Author. It may seem that the function will work by default. However, since Author is inherited from the parent class User, the override for the parent class will be used.
+
+Now, if we modify the class Author and add a specific override of the toString() method, the following override will happen:
+
+```kotlin
+class Author(id: Int, login: String, email: String, val books: String): User(id, login, email) {
+override fun toString(): String {
+return "Author{id=$id, login=$login, email=$email}, books: $books"
+}
+}
+
+val user = User(1, "marys01", "mary0101@gmail.com")
+val author = Author(2, "ohwilde", "wilde1854@mail.ie", "Someone’s portrait")
+
+println(user)   // User{id=1, login=marys01, email=mary0101@gmail.com}
+println(author) // Author{id=2, login=ohwilde, email=wilde1854@mail.ie}, books: Someone’s portrait
+```
+### Using the superclass definition
+It may be necessary to invoke the toString() parent implementation in the child class. It can be done with super, as you remember from inheritance:
+
+```kotlin
+class Author(id: Int, login: String, email: String, val books: String): User(id, login, email) {
+override fun toString(): String {
+return "Author: ${super.toString()};\nBooks: $books"
+}
+}
+```
+Here, we used the toString() method of the superclass and complemented it for the derived class.
+
+Let’s see how it works. Insert some values of the Author class and output them:
+
+```kotlin
+val author1 = Author(1, "uncle_bob",
+"rmartin@objectmentor.com",
+"\n1.\"Clean Code: A Handbook of Agile Software Craftsmanship\" \n2.\"Agile Software Development: Principles, Patterns and Practices\"")
+val author2 = Author(2, "ltlst",
+"leotolstoy@mail.com",
+"\n1.\"Anna Karenina\" \n2.\"The Death of Ivan Ilyich\" \n3.\"War and Peace\"")
+
+println(author1)
+println()
+println(author2)
+```
+Now, let’s see what will be displayed as a result of our program:
+
+```kotlin
+/*  Author: User{id=1, login=uncle_bob, email=rmartin@objectmentor.com};
+Books:
+1."Clean Code: A Handbook of Agile Software Craftsmanship"
+2."Agile Software Development: Principles, Patterns and Practices"
+
+    Author: User{id=2, login=ltlst, email=leotolstoy@mail.com};
+    Books: 
+    1."Anna Karenina" 
+    2."The Death of Ivan Ilyich" 
+    3."War and Peace"
+*/
+```
+As you can see, we used the definition of the toString() function for the parent class User, adding it to the class Author. The result was an override of toString() for the class Author using the override for User.
+
+### Summary
+The toString() function is used to create a string view of non-string objects. It comes in handy in various situations, for example, in debugging. In this topic, we saw how it works and learned to override it for the class we are using. In order to override toString() for the child classes, all standard rules of inheritance should apply. Now you're ready to solve various complex tasks using toString()!
+
