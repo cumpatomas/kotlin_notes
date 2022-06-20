@@ -1,3 +1,4 @@
+### Introduction
 How to make a simple class for storing data? In addition to storing information, it should be able to compare and copy objects. Also, it would be very convenient to output data immediately. Normally, for this functionality the class must have some methods: equals() and hashCode() for comparison, copy() for copying, and toString() for the string representation of the object. But in Kotlin you don't need to implement all of these functions, you can simply use the data class. Let’s take a closer look at this type of class.
 
 ## Data Class
@@ -86,5 +87,5 @@ As we've demonstrated, the data class is a convenient way to organize data. So u
 ```kotlin
 data class Customer(val name: String, val email: String)
 ```
-###Conclusion
+### Conclusion
 Now you know how to simplify boilerplate code with the data keyword. It helps not only to shorten your code but also to save your time. Use it wisely!
