@@ -86,5 +86,5 @@ As we've demonstrated, the data class is a convenient way to organize data. So u
 ```kotlin
 data class Customer(val name: String, val email: String)
 ```
-### Conclusion
+###Conclusion
 Now you know how to simplify boilerplate code with the data keyword. It helps not only to shorten your code but also to save your time. Use it wisely!
