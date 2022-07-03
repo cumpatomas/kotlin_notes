@@ -142,5 +142,5 @@ number = string.toInt()
 number = -1
 }
 ```
-### Conclusion 
+### Conclusion
 Now you know how to use the full try-catch-finally statement by adding a finally block that executes no matter what the exception does. Remember that **you can skip catch or finally when you handle an exception with try, but you can't omit both at the same time**. You can also add syntactic sugar to your code as a try-catch-finally expression.
