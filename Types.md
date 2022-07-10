@@ -100,8 +100,5 @@ fun throwIfNull(name: String?) {
     }
 }
 ```
-
-### Conclusion
-Everything we got to know from this topic can be summarized as a neat type system tree:
-
+![img_12.png](img_12.png)
 
