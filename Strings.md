@@ -345,6 +345,13 @@ Books:
 ```
 As you can see, we used the definition of the toString() function for the parent class User, adding it to the class Author. The result was an override of toString() for the class Author using the override for User.
 
-### Summary
-The toString() function is used to create a string view of non-string objects. It comes in handy in various situations, for example, in debugging. In this topic, we saw how it works and learned to override it for the class we are using. In order to override toString() for the child classes, all standard rules of inheritance should apply. Now you're ready to solve various complex tasks using toString()!
+### Remove accents in strings
 
+in GRADLE
+implementation  'org.apache.commons:commons-lang3:3.12.0'
+
+in file.Kt
+import org.apache.commons.lang3.StringUtils
+
+Use in CODE:
+StringUtils.stripAccents("String to unaccent")
