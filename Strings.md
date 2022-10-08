@@ -343,6 +343,7 @@ Books:
     3."War and Peace"
 */
 ```
+
 As you can see, we used the definition of the toString() function for the parent class User, adding it to the class Author. The result was an override of toString() for the class Author using the override for User.
 
 ### Remove accents in strings
