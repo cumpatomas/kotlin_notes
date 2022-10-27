@@ -1,4 +1,4 @@
-###UTC and UTC-SLS standards
+### UTC and UTC-SLS standards
 Coordinated Universal Time (UTC) is the world's principal time standard for regulating clocks and time. It has effectively replaced the Greenwich Mean Time (GMT), which is the yearly average of the time at the Royal Observatory Greenwich.
 
 UTC uses the International Atomic Time (IAT) in order to keep the correct time, which is the mean time of 400 atomic clocks around the globe.
@@ -85,16 +85,21 @@ The string denotes the duration of 2 years, 11 months, 5 days, 4 hours, 10 minut
 If the value of a time item is zero, it can be omitted. For example:
 
 ```kotlin
+/*
 P4Y      Duration of 4 years
 PT3H5M   Duration of 3 hours and 5 minutes
 P7DT6H   Duration of 7 days and 6 hours
+*/
+
 ```
 The last item may also have decimal digits. For example:
 
 ```kotlin
+/*
 P12.5Y         Duration of 12.5 years
 PT2H3M10.23S   Duration of 2 hours, 3 minutes and 10.23 seconds
 P2M7.3D        Duration of 2 months and 7.3 days
+*/
 
 ```
 
@@ -327,4 +332,33 @@ println(duration.inWholeHours)                                // 48375
 
 println( instant1.periodUntil(instant2, TimeZone.UTC) )       // P5Y6M8DT15H23M40S
 println( instant1.periodUntil(instant2, TimeZone.UTC).days )  // 8
+
+```
+
+### Following are some examples of how to use the datetime library:
+
+```kotlin
+// Create a LocalDate instance for 2017-4-29
+val date = LocalDate(2017, 4, 29)
+
+//Create a LocalDateTime instance for 2021-12-21 16:57
+val dateTime = LocalDateTime(2021, 12, 31, 16, 57)
+val year = dateTime.year         // Get year as an integer
+val month = dateTime.monthNumber // Get month as an integer
+val day = dateTime.dayOfMonth    // Get day as an integer
+val hour = dateTime.hour         // Get hour as an integer
+val minutes = dateTime.minute    // Get minutes as an integer
+
+// Create a LocalDateTime instance for the current date and time for UTC+0 timezone
+val dateTimeCurrent = Clock.System.now().toLocalDateTime(TimeZone.of("UTC+0"))
+// Create a LocalDate instance for the current date and time for UTC+0 timezone
+val dateCurrent = dateTimeCurrent.date
+
+// Get the date and time as string
+val dateTimeString = dateTime.toString()
+// Print the string above
+println(dateTimeString)  // Output 2021-12-31T16:57
+
+// Same result as the above
+println(dateTime)        // Output 2021-12-31T16:57
 ```
