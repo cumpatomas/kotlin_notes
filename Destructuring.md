@@ -23,8 +23,9 @@ A destructuring declaration uses a componentN() operator, that returns an n-th e
 val userName = anonim.component1()
 val userAge = anonim.component2()
 val isAdmin = anonim.component3()
-Destructuring without data classes
+
 ```
+### Destructuring without data classes
 Destructuring can be used without data classes as well. We simply need to define a componentN operator manually. Operators are similar to functions but use special symbols that carry out operations on operands/values. For example, + is an operator that performs addition. That's it! Just think of it as a function. Now let's try to override some operators for destructuring:
 
 ```kotlin
