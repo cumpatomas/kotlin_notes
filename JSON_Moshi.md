@@ -79,9 +79,10 @@ In fact, the choice of the right JSON naming convention depends directly on your
 ### The advantages of JSON
 JSON is widely spread for data exchange on the Internet because of its strong advantages:
 
-compactness;
-flexibility;
-high readability, even for people far from programming;
+- compactness;
+- flexibility;
+- high readability, even for people far from programming;
+
 most programming languages have functions and libraries for reading and creating JSON structures.
 The JSON is a general format to pass structured data through the network because after you serialize data to JSON, you can deserialize it back without losing any information. The main advantage of JSON comparing to plain text is the ability to describe relations between objects via nesting and key-value pairs. So, it's high chances that the sites you're often visiting use JSON too.
 
