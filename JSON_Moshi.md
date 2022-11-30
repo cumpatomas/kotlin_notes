@@ -67,7 +67,6 @@ The nested objects are fully independent and may have different properties:
 }
 ```
 But in practice, such objects often look similar.
-
 ### camelCase VS snake_case
 If you have read the JSON objects examples really carefully, you might have a lingering question: what style of compound word writing should be used for JSON?
 
