@@ -86,3 +86,162 @@ val scaryAnimal = "(b|r|go)at".toRegex()  // matches "bat", "rat", or "goat"
 val answer = "The answer is definitely (yes|no|maybe)".toRegex()
 ```
 In general, alternations are quite similar to sets: they describe multiple alternatives that a particular part of the pattern can match. However, while sets can match only a single character in the string, alternations are used to define multi-character alternatives.
+
+### The list of quantifiers
+Here is a list of quantifiers to be remembered:
++ "+" matches one or more instances of the preceding character;
++ "*" matches zero or more instances of the preceding character;
++ "{n}" matches exactly n instances of the preceding character;
++ "{n,m}" matches at least n but not more than m instances of the preceding character;
++ "{n,}" matches at least n instances of the preceding character;
++ "{0,m}" matches no more than m instances of the preceding character.
+
+Note that there is also another quantifier, ?, which makes the preceding character optional. It is short for {0,1}. We will not consider this quantifier here because you should already know it.
+
+### The plus quantifier
+Below you can see how we use the plus character, which matches one or more occurrences of the preceding character:
+
+```kotlin
+val regex = "ca+b".toRegex()
+
+regex.matches("cab") // true
+regex.matches("caaaaab") // true
+regex.matches("cb") // false because it does not have at least one instance of 'a'
+```
+As you can see, it matches only those strings that have one or more instances of the 'a' character.
+
+### The asterisk quantifier
+The example below demonstrates the use of the asterisk character, which matches zero or more occurrences of the preceding character:
+
+```kotlin
+val regex = "A[0-3]*".toRegex()
+
+regex.matches("A")  // true because the pattern matches zero or more occurrences
+regex.matches("A0") // true
+regex.matches("A000111222333") // true
+```
+As you can see, the asterisk quantifier, unlike the plus quantifier, allows the pattern to also match the strings that do not contain the "quantified" character at all.
+
+In the following example, there is a pattern describing the string "John" located between an undefined number of undefined characters in the text:
+
+```kotlin
+val johnRegex = ".*John.*".toRegex() // it matches all strings containing the substring "John"
+
+val textWithJohn = "My friend John is a computer programmer"
+
+johnRegex.matches(textWithJohn) // true
+
+val john = "John"
+
+johnRegex.matches(john) // true
+
+val textWithoutJohn = "My friend is a computer programmer"
+
+johnRegex.matches(textWithoutJohn) // false
+```
+So, the asterisk quantifier can be used to check whether a substring of a string matches a pattern. Using it, we can skip spaces or any other characters we don't want to predict in our pattern.
+
+### Specifying the number of repetitions
+Both previous quantifiers have a wide range of applications, but they do not allow you to specify how many times a character may occur. Fortunately, there is a group of quantifiers that allow specifying the number of instances in curly braces: {n}, {n,m}, and {n,}.
+
+An important clarification: no spaces are supposed to be used inside curly braces. There can be only one or two numbers and, optionally, a comma. Putting spaces inside curly braces leads to the "deactivation" of the quantifier and, as a result, a totally different regular expression.
+Take a look at the example where we demonstrate how to match exactly n instances of the preceding character using the {n} quantifier:
+
+```kotlin
+val regex = "[0-9]{4}".toRegex() // four digits
+
+regex.matches("6342")  // true
+regex.matches("9034")  // true
+
+regex.matches("182")   // false
+regex.matches("54312") // false
+```
+Matching from n to m instances is possible thanks to the {n,m} quantifier. Note that the range specified in curly braces is inclusive at both ends: m encountered instances also count as a match. This is standard for the regex language regardless of the implementation.
+
+```kotlin
+val regex = "1{2,3}".toRegex()
+
+regex.matches("1")    // false
+regex.matches("11")   // true
+regex.matches("111")  // true
+regex.matches("1111") // false
+```
+The last example demonstrates how to match at least n instances using the {n,} quantifier:
+
+
+```kotlin
+val regex = "ab{4,}".toRegex()
+
+regex.matches("abb") // false, not enough 'b'
+regex.matches("abbbb") // true
+regex.matches("abbbbbbb") // true
+```
+The quantifier that matches not more than m instances works similarly. Try it yourself.
+
+### The list of shorthands
+There are several pre-defined shorthands for the commonly used character sets:
+
+**\d** is any digit, short for [0-9];
+
+**\s** is a whitespace character (including tab and newline), short for [ \t\n\x0B\f\r];
+
+**\w** is an alphanumeric character (letter or numeral), short for [a-zA-Z_0-9];
+
+**\b** is a word boundary. This one is a bit trickier: it doesn't match any specific character but rather matches the boundary between an alphanumeric character or underscore and a non-alphanumeric character (for example, a whitespace character) or a boundary of a string (its end or start). This way, "\ba" matches all words (sequences of alphanumeric characters) starting with "a", "a\b" matches all words ending with "a", and "\ba\b" matches all separate "a" characters preceded and followed by non-alphanumeric characters.
+
+There are also negative counterparts of these shorthands that are equivalent to the restrictive sets and match everything except for the characters mentioned above:
+
+
+**\D** is a non-digit, short for [^0-9];
+
+**\S** is a non-whitespace character, short for [^ \t\n\x0B\f\r];
+
+**\W** is a non-alphanumeric character, short for [^a-zA-Z_0-9].
+
+**\B** is a non-word boundary. It matches the case opposite to that of the \b shorthand: it finds its match every time whenever there is no "gap" between alphanumeric characters. For example, "a\B" matches all words that start with "a".
+
+These shorthands make writing common patterns much easier.
+
+Each shorthand has the same first letter as its representation (digit, space, word, boundary). The uppercase characters are used to designate the shorthands for negative character classes.
+
+### Example
+Let's consider an example with the listed shorthands. Remember that in Kotlin we use an additional backslash \ character for escaping.
+
+```kotlin
+val regex = "\\s\\w\\d\\s".toRegex()
+
+regex.matches(" A5 ")   // true
+regex.matches(" 33 ")   // true
+regex.matches("\tA4\t") // true because tabs are whitespace as well
+
+regex.matches("q18q") // false, 'q' is not a space
+regex.matches(" AB ") // false, 'B' is not a digit
+regex.matches(" -1 ") // false, '-' is not an alphanumeric character, but '1' is OK.
+```
+Another way to write shorthand is to use raw strings. You don't need to escape \ in this case:
+
+```kotlin
+val regex = """\W\S\D\S\W""".toRegex()
+regex.matches(" 9o9 ")  // true
+regex.matches("\nA 1 ")   // true
+regex.matches("\tAl4\t") // true
+
+regex.matches(" \taa ") // false, '\t' is a space
+regex.matches("_BBB ") // false, '_' is an alphanumeric character
+```
+Here's how boundary shorthands work in Kotlin code:
+
+```kotlin
+val startRegex = "\\bcat".toRegex() // matches the part of the word that starts with "cat"
+val endRegex = "cat\\b".toRegex() // matches the part of the word that ends with "cat"
+val wholeRegex = "\\bcat\\b".toRegex() // matches the whole word "cat"
+```
+For now, we are not applying them in practice because we only deal with the matches method, which requires a full string to match the regexp.
+
+If you do not want to use shorthands, you can write the same regex as below:
+
+```kotlin
+val regex = "[ \\t\\n\\x0B\\f\\r][a-zA-Z_0-9][0-9][ \\t\\n\\x0B\\f\\r]".toRegex()
+```
+
+This regex, however, is long and not nearly as readable as the previous ones. It also has a lot of character repetitions. You can use the predefined shorthands instead of commonly used sets and ranges to simplify your regexes and make them more readable.
