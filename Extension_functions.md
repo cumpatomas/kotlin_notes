@@ -31,6 +31,11 @@ fun CharSequence.unaccent(): String {
             'í'-> outString += 'i'
             'ó'-> outString += 'o'
             'ú'-> outString += 'u'
+            'Á'-> outString += 'A'
+            'É'-> outString += 'E'
+            'Í'-> outString += 'I'
+            'Ó'-> outString += 'O'
+            'Ú'-> outString += 'U'
             else -> outString += char
         }
     return outString
