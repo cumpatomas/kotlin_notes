@@ -355,3 +355,17 @@ import org.apache.commons.lang3.StringUtils
 
 Use in CODE:
 StringUtils.stripAccents("String to unaccent")
+
+
+### Cómo comprobar si todos los caracteres de un string cumplen una condición.
+
+```kotlin
+
+fun main() {
+val miString1 = "MiString es un texto sin números"
+val miString2 = "MiString es un texto con números 12345"
+val resultado1 = miString1.all { it.isLetter() || it.isWhitespace() } // true
+val resultado2 = miString2.all { it.isLetter() || it.isWhitespace() } // false
+
+```
+}
