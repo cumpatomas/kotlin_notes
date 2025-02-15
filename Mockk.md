@@ -233,13 +233,15 @@ To match null values, we can use the isNull() function. For example, to match a 
 
 `every { myMockObject.myMethod(isNull<String>()) } returns 42`
 
-4) Matching ranges of values
+<span style="color:pink">4) Matching ranges of values</span>
+
 
 MockK provides several functions for matching ranges of values, including less(), lessEq(), greater(), greaterEq(), and range(). For example, to match an integer value between 10 and 20, we can use the range() function like this:
 
 `every { myMockObject.myMethod(range(10, 20)) } returns 42`
 
-5) Matching collections
+<span style="color:pink">5) Matching collections</span>
+
 
 To match collections, we can use the match() function with a custom matcher function that checks the contents of the collection. For example, to match a list of strings that contains the values "foo" and "bar", we can use the match() function like this:
 
