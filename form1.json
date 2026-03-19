@@ -116,7 +116,7 @@
                   "label": "Siguiente",
                   "action": {
                     "type": "next",
-                    "url": "https://form-api.free.beeceptor.com/form/complex2"
+                    "url": "https://raw.githubusercontent.com/cumpatomas/kotlin_notes/refs/heads/dynamic-forms/form2.json"
                   }
                 }
               }
