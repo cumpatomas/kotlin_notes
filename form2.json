@@ -1,0 +1,143 @@
+  {                                                                                                                                                                                                             
+    "schemaVersion": "1.0",
+    "responsiveLayouts": [                                                                                                                                                                                      
+      {                                                     
+        "minWidth": 100,
+        "dimensions": { "width": 100, "height": 100 },
+        "componentTree": {
+          "id": "register-screen",
+          "componentType": "container",
+          "direction": "vertical",
+          "spacing": 16,
+          "styles": { "backgroundColor": "#FFFFFF" },
+          "positioning": {
+            "widthPercentage": 100,
+            "heightPercentage": 100,
+            "paddingTop": 4,
+            "paddingBottom": 4,
+            "paddingStart": 16,
+            "paddingEnd": 16,
+            "verticalAlignment": "start",
+            "horizontalAlignment": "start"
+          },
+          "children": [
+            {
+              "id": "register-title",
+              "componentType": "text",
+              "textContent": "Crear cuenta",
+              "styles": { "fontSize": 24, "fontWeight": 600, "color": "#1A1A1A" },
+              "positioning": {
+                "widthPercentage": 100,
+                "paddingTop": 4,
+                "paddingBottom": 4,
+                "paddingStart": 0,
+                "paddingEnd": 0
+              }
+            },
+            {
+              "id": "register-form",
+              "componentType": "dynamicForm",
+              "positioning": { "widthPercentage": 100, "heightPercentage": 80 },
+              "form": {
+                "id": "register_v1",
+                "validateOn": ["blur", "submit"],
+                "layout": {
+                  "fieldHeight": 48,
+                  "labelToFieldGap": 8,
+                  "fieldToHelperGap": 4,
+                  "fieldToFieldGap": 12,
+                  "buttonHeight": 48
+                },
+                "fields": [
+                  {
+                    "id": "gender",
+                    "type": "radio",
+                    "label": "Género",
+                    "layout": { "marginTop": 8, "marginBottom": 0 },
+                    "options": [
+                      { "value": "male", "label": "Hombre" },
+                      { "value": "female", "label": "Mujer" },
+                      { "value": "other", "label": "Prefiero no decirlo" }
+                    ],
+                    "validations": [
+                      { "type": "required", "message": "Selecciona una opción" }
+                    ]
+                  },
+                  {
+                    "id": "age",
+                    "type": "number",
+                    "label": "Edad",
+                    "placeholder": "Tu edad",
+                    "layout": { "marginTop": 8, "marginBottom": 0, "height": 48 },
+                    "validations": [
+                      { "type": "required", "message": "La edad es obligatoria" }
+                    ]
+                  },
+                  {
+                    "id": "parentConsent",
+                    "type": "toggle",
+                    "label": "Consentimiento de tutor legal",
+                    "layout": { "marginTop": 8, "marginBottom": 0 },
+                    "validations": [
+                      { "type": "requiredTrue", "message": "El tutor debe aceptar para continuar" }
+                    ],
+                    "visibleIf": {
+                      "field": "age",
+                      "lt": 18
+                    }
+                  },
+                  {
+                    "id": "notifications",
+                    "type": "toggle",
+                    "label": "Recibir notificaciones",
+                    "layout": { "marginTop": 8, "marginBottom": 0 },
+                    "validations": []
+                  },
+                  {
+                    "id": "notificationFrequency",
+                    "type": "radio",
+                    "label": "Frecuencia de notificaciones",
+                    "layout": { "marginTop": 8, "marginBottom": 0 },
+                    "options": [
+                      { "value": "daily", "label": "Diaria" },
+                      { "value": "weekly", "label": "Semanal" },
+                      { "value": "monthly", "label": "Mensual" }
+                    ],
+                    "validations": [
+			{ "type": "required", "message": "Selecciona una opción" }],
+                    "enabledIf": {
+                      "field": "notifications",
+                      "equals": "true"
+                    }
+                  },
+                  {
+                    "id": "marketingConsent",
+                    "type": "checkbox",
+                    "label": "Acepto recibir ofertas y promociones",
+                    "layout": { "marginTop": 8, "marginBottom": 0 },
+                    "validations": [],
+                    "visibleIf": {
+                      "and": [
+                        { "field": "notifications", "equals": "true" },
+                        { "field": "age", "gte": 18 }
+                      ]
+                    }
+                  }
+                ],
+                "submit": {
+                  "label": "Siguiente",
+                  "action": {
+                    "type": "next",
+                    "url": "https://form-api.free.beeceptor.com/form/complex3"
+                  }
+                },
+                "actions": {
+                  "onValidationError": { "type": "scrollToFirstError" }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
