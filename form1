@@ -1,0 +1,128 @@
+ {                                                                                                                                                                                                             
+    "schemaVersion": "1.0",                                                                                                                                                                                     
+    "responsiveLayouts": [                                                                                                                                                                                      
+      {                                                     
+        "minWidth": 100,
+        "dimensions": { "width": 100, "height": 100 },
+        "componentTree": {
+          "id": "register-screen",
+          "componentType": "container",
+          "direction": "vertical",
+          "spacing": 16,
+          "styles": { "backgroundColor": "#FFFFFF" },
+          "positioning": {
+            "widthPercentage": 100,
+            "heightPercentage": 100,
+            "paddingTop": 4,
+            "paddingBottom": 4,
+            "paddingStart": 16,
+            "paddingEnd": 16,
+            "verticalAlignment": "start",
+            "horizontalAlignment": "start"
+          },
+          "children": [
+            {
+              "id": "register-title",
+              "componentType": "text",
+              "textContent": "Crear cuenta",
+              "styles": { "fontSize": 24, "fontWeight": 600, "color": "#1A1A1A" },
+              "positioning": {
+                "widthPercentage": 100,
+                "paddingTop": 4,
+                "paddingBottom": 4,
+                "paddingStart": 0,
+                "paddingEnd": 0
+              }
+            },
+            {
+              "id": "register-form",
+              "componentType": "dynamicForm",
+              "positioning": { "widthPercentage": 100, "heightPercentage": 80 },
+              "form": {
+                "id": "register_v1",
+                "validateOn": ["blur", "submit"],
+                "layout": {
+                  "fieldHeight": 48,
+                  "labelToFieldGap": 8,
+                  "fieldToHelperGap": 4,
+                  "fieldToFieldGap": 12,
+                  "buttonHeight": 48
+                },
+                "fields": [
+                  {
+                    "id": "firstName",
+                    "type": "text",
+                    "label": "Nombre",
+                    "placeholder": "Tu nombre",
+                    "layout": { "marginTop": 0, "marginBottom": 0, "height": 48 },
+                    "validations": [
+                      { "type": "required", "message": "El nombre es obligatorio" },
+                      { "type": "minLength", "value": 2, "message": "Mínimo 2 caracteres" }
+                    ]
+                  },
+                  {
+                    "id": "email",
+                    "type": "email",
+                    "label": "Email",
+                    "placeholder": "tu@email.com",
+                    "layout": { "marginTop": 0, "marginBottom": 0, "height": 48 },
+                    "validations": [
+                      { "type": "required", "message": "El email es obligatorio" },
+                      { "type": "pattern", "value": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$", "message": "Formato de email inválido" },
+		      { "type": "async", "validationUrl": "https://api.example.com/validate/email", "debounce": null, "message": "Este email ya está en uso" }
+                    ]
+                  },
+                  {
+                    "id": "password",
+                    "type": "password",
+                    "label": "Contraseña",
+                    "layout": { "marginTop": 0, "marginBottom": 0, "height": 48 },
+                    "validations": [
+                      { "type": "required", "message": "La contraseña es obligatoria" },
+                      { "type": "minLength", "value": 8, "message": "Mínimo 8 caracteres" }
+                    ]
+                  },
+                  {
+                    "id": "confirmPassword",
+                    "type": "password",
+                    "label": "Repetir contraseña",
+                    "layout": { "marginTop": 0, "marginBottom": 0, "height": 48 },
+                    "validations": [
+                      { "type": "required", "message": "Debes repetir la contraseña" },
+                      { "type": "matchesField", "field": "password", "message": "Las contraseñas no coinciden" }
+                    ]
+                  },
+                  {
+                    "id": "hasReferral",
+                    "type": "toggle",
+                    "label": "¿Tienes código de referido?"
+                  },
+                  {
+                    "id": "referralCode",
+                    "type": "text",
+                    "label": "Código de referido",
+                    "placeholder": "Ej: AMIGO2024",
+                    "layout": { "marginTop": 0, "marginBottom": 0, "height": 48 },
+                    "validations": [
+                      { "type": "required", "message": "Introduce el código de referido" }
+                    ],
+                    "visibleIf": {
+                      "field": "hasReferral",
+                      "equals": "true"
+                    }
+                  }
+                ],
+                "submit": {
+                  "label": "Siguiente",
+                  "action": {
+                    "type": "next",
+                    "url": "https://form-api.free.beeceptor.com/form/complex2"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
