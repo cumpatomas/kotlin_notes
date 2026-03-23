@@ -10,7 +10,7 @@
           "direction": "vertical",
           "spacing": 16,
           "styles": { "backgroundColor": "#FFFFFF" },
-          "positioning": {
+          "layout": {
             "widthPercentage": 100,
             "heightPercentage": 100,
             "paddingTop": 4,
@@ -26,7 +26,7 @@
               "componentType": "text",
               "textContent": "Crear cuenta",
               "styles": { "fontSize": 24, "fontWeight": 600, "color": "#1A1A1A" },
-              "positioning": {
+              "layout": {
                 "widthPercentage": 100,
                 "paddingTop": 4,
                 "paddingBottom": 4,
@@ -37,11 +37,12 @@
             {
               "id": "register-form",
               "componentType": "dynamicForm",
-              "positioning": { "widthPercentage": 100, "heightPercentage": 80 },
               "form": {
                 "id": "register_v1",
                 "validateOn": ["blur", "submit"],
                 "layout": {
+"widthPercentage": 100, 
+"heightPercentage": 80,
                   "fieldHeight": 48,
                   "labelToFieldGap": 8,
                   "fieldToHelperGap": 4,
