@@ -128,7 +128,7 @@
                   "label": "Siguiente",
                   "action": {
                     "type": "next",
-                    "url": "https://raw.githubusercontent.com/cumpatomas/kotlin_notes/refs/heads/dynamic-forms/form3.json"
+                    "url": "https://raw.githubusercontent.com/cumpatomas/kotlin_notes/refs/heads/dynamic-forms/json3b"
                   }
                 },
                 "actions": {
