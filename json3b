@@ -1,0 +1,109 @@
+ {                                                                                                                                                                                                             
+    "schemaVersion": "1.0",                                                                                                                                                                                     
+    "responsiveLayouts": [                                                                                                                                                                                      
+      {                                                                                                                                                                                                         
+        "minWidth": 100,                                    
+        "dimensions": { "width": 100, "height": 100 },                                                                                                                                                          
+        "componentTree": {
+          "id": "register-screen",                                                                                                                                                                              
+          "componentType": "container",                     
+          "direction": "vertical",
+          "spacing": 16,
+          "styles": { "backgroundColor": "#FFFFFF" },                                                                                                                                                           
+          "positioning": {                                                                                                                                                                                      
+            "widthPercentage": 100,                                                                                                                                                                             
+            "heightPercentage": 100,                                                                                                                                                                            
+            "paddingTop": 4,                                
+            "paddingBottom": 4,
+            "paddingStart": 16,                                                                                                                                                                                 
+            "paddingEnd": 16,
+            "verticalAlignment": "start",                                                                                                                                                                       
+            "horizontalAlignment": "start"                                                                                                                                                                      
+          },
+          "children": [                                                                                                                                                                                         
+            {                                               
+              "id": "register-title",
+              "componentType": "text",
+              "textContent": "Crear cuenta",                                                                                                                                                                    
+              "styles": { "fontSize": 24, "fontWeight": 600, "color": "#1A1A1A" },
+              "positioning": {                                                                                                                                                                                  
+                "widthPercentage": 100,                     
+                "paddingTop": 4,                                                                                                                                                                                
+                "paddingBottom": 4,                         
+                "paddingStart": 0,                                                                                                                                                                              
+                "paddingEnd": 0                             
+              }
+            },
+            {
+              "id": "register-form",
+              "componentType": "dynamicForm",
+              "positioning": { "widthPercentage": 100, "heightPercentage": 80 },                                                                                                                                
+              "form": {                                                                                                                                                                                         
+                "id": "register_v1",                                                                                                                                                                            
+                "validateOn": ["blur", "submit"],                                                                                                                                                               
+                "layout": {                                                                                                                                                                                     
+                  "fieldHeight": 48,
+                  "labelToFieldGap": 8,                                                                                                                                                                         
+                  "fieldToHelperGap": 4,                    
+                  "fieldToFieldGap": 12,                                                                                                                                                                        
+                  "buttonHeight": 48                        
+                },
+                "fields": [
+                  {                                                                                                                                                                                             
+                    "id": "phoneTitle",
+                    "type": "label",                                                                                                                                                                            
+                    "label": "Teléfono"                     
+                  },
+                  {
+                    "id": "phoneRow",
+                    "type": "row",                                                                                                                                                                              
+                    "children": [
+                      {                                                                                                                                                                                         
+                        "id": "countryCode",                
+                        "type": "dropdown",
+                        "label": "País",
+                        "weight": 0.25,                                                                                                                                                                         
+                        "defaultValue": "+34",
+                        "dataSource": {                                                                                                                                                                         
+                          "type": "async",                                                                                                                                                                     
+                          "data": ["+34", "+33", "+49", "+1", "+44", "+39", "+351"],
+			  			  "url": "https://raw.githubusercontent.com/cumpatomas/kotlin_notes/refs/heads/dynamic-forms/countriesCodes.json"
+                        },                                                                                                                                                                                      
+                        "validations": [                    
+                          { "type": "required", "message": "Selecciona un país" }                                                                                                                               
+                        ]                                                                                                                                                                                       
+                      },
+                      {                                                                                                                                                                                         
+                        "id": "phoneNumber",                
+                        "type": "phone",
+                        "label": "Número",                                                                                                                                                                      
+                        "placeholder": "600 000 000",
+                        "weight": 0.75,                                                                                                                                                                         
+                        "validations": [ 
+			   			{ "type": "pattern", "value": "\\d{6,}", "message": "Formato de teléfono inválido" },
+                          { "type": "required", "message": "El teléfono es obligatorio" }                                                                                                                       
+                        ]                                                                                                                                                                                       
+                      }
+                    ]                                                                                                                                                                                           
+                  },                                        
+                  {
+                    "id": "acceptedTerms",
+                    "type": "checkbox",
+                    "label": "Acepto términos y condiciones",                                                                                                                                                   
+                    "layout": { "marginTop": 0, "marginBottom": 0, "height": 24, "paddingTop": 8 },
+                    "validations": [                                                                                                                                                                            
+                      { "type": "requiredTrue", "message": "Debes aceptar los términos" }
+                    ]                                                                                                                                                                                           
+                  }                                         
+                ],                                                                                                                                                                                              
+                "submit": {                                 
+                  "label": "Enviar",
+                  "action": { "type": "submit", "url": "https://example.com" }
+                }
+              }
+            }
+          ]
+        }                                                                                                                                                                                                       
+      }
+    ]                                                                                                                                                                                                           
+  }                                                         
