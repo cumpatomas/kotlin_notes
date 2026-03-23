@@ -10,7 +10,7 @@
           "direction": "vertical",
           "spacing": 16,
           "styles": { "backgroundColor": "#FFFFFF" },                                                                                                                                                           
-          "positioning": {                                                                                                                                                                                      
+          "layout": {                                                                                                                                                                                      
             "widthPercentage": 100,                                                                                                                                                                             
             "heightPercentage": 100,                                                                                                                                                                            
             "paddingTop": 4,                                
@@ -36,12 +36,13 @@
             },
             {
               "id": "register-form",
-              "componentType": "dynamicForm",
-              "positioning": { "widthPercentage": 100, "heightPercentage": 80 },                                                                                                                                
+              "componentType": "dynamicForm",                                                                                                                       
               "form": {                                                                                                                                                                                         
                 "id": "register_v1",                                                                                                                                                                            
                 "validateOn": ["blur", "submit"],                                                                                                                                                               
-                "layout": {                                                                                                                                                                                     
+                "layout": {
+ "widthPercentage": 100, 
+"heightPercentage": 80,                                                                                                                                                                                     
                   "fieldHeight": 48,
                   "labelToFieldGap": 8,                                                                                                                                                                         
                   "fieldToHelperGap": 4,                    
@@ -62,12 +63,14 @@
                         "id": "countryCode",                
                         "type": "dropdown",
                         "label": "País",
-                        "weight": 0.25,                                                                                                                                                                         
+ 			"layout": {
+            			"widthPercentage": 25
+			},                                                                                                                                                                            
                         "defaultValue": "+34",
                         "dataSource": {                                                                                                                                                                         
                           "type": "async",                                                                                                                                                                     
                           "data": ["+34", "+33", "+49", "+1", "+44", "+39", "+351"],
-			  			  "url": "https://raw.githubusercontent.com/cumpatomas/kotlin_notes/refs/heads/dynamic-forms/countriesCodes.json"
+			  "url": "https://raw.githubusercontent.com/cumpatomas/kotlin_notes/refs/heads/dynamic-forms/countriesCodes.json"
                         },                                                                                                                                                                                      
                         "validations": [                    
                           { "type": "required", "message": "Selecciona un país" }                                                                                                                               
@@ -78,9 +81,11 @@
                         "type": "phone",
                         "label": "Número",                                                                                                                                                                      
                         "placeholder": "600 000 000",
-                        "weight": 0.75,                                                                                                                                                                         
+ 			"layout": {
+            			"widthPercentage": 75
+			},                                                                                                                                                                      
                         "validations": [ 
-			   			{ "type": "pattern", "value": "\\d{6,}", "message": "Formato de teléfono inválido" },
+			   { "type": "pattern", "value": "\\d{6,}", "message": "Formato de teléfono inválido" },
                           { "type": "required", "message": "El teléfono es obligatorio" }                                                                                                                       
                         ]                                                                                                                                                                                       
                       }
