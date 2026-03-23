@@ -67,7 +67,7 @@
                         "dataSource": {                                                                                                                                                                         
                           "type": "async",                                                                                                                                                                     
                           "data": ["+34", "+33", "+49", "+1", "+44", "+39", "+351"],
-			  "url": "https://raw.githubusercontent.com/cumpatomas/kotlin_notes/refs/heads/dynamic-forms/countriesCodes.json"
+			  			  "url": "https://raw.githubusercontent.com/cumpatomas/kotlin_notes/refs/heads/dynamic-forms/countriesCodes.json"
                         },                                                                                                                                                                                      
                         "validations": [                    
                           { "type": "required", "message": "Selecciona un país" }                                                                                                                               
@@ -80,7 +80,7 @@
                         "placeholder": "600 000 000",
                         "weight": 0.75,                                                                                                                                                                         
                         "validations": [ 
-			   { "type": "pattern", "value": "\\d{6,}", "message": "Formato de teléfono inválido" },
+			   			{ "type": "pattern", "value": "\\d{6,}", "message": "Formato de teléfono inválido" },
                           { "type": "required", "message": "El teléfono es obligatorio" }                                                                                                                       
                         ]                                                                                                                                                                                       
                       }
