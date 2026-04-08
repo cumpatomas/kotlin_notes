@@ -1,129 +1,383 @@
- {                                                                                                                                                                                                             
-    "schemaVersion": "1.0",                                                                                                                                                                                     
-    "responsiveLayouts": [                                                                                                                                                                                      
-      {                                                     
-        "minWidth": 100,
-        "dimensions": { "width": 100, "height": 100 },
-        "componentTree": {
-          "id": "register-screen",
-          "componentType": "container",
-          "direction": "vertical",
-          "spacing": 16,
-          "styles": { "backgroundColor": "#FFFFFF" },
-          "layout": {
-            "widthPercentage": 100,
-            "heightPercentage": 100,
-            "paddingTop": 4,
-            "paddingBottom": 4,
-            "paddingStart": 16,
-            "paddingEnd": 16,
-            "verticalAlignment": "start",
-            "horizontalAlignment": "start"
-          },
-          "children": [
-            {
-              "id": "register-title",
-              "componentType": "text",
-              "textContent": "Crear cuenta",
-              "styles": { "fontSize": 24, "fontWeight": 600, "color": "#1A1A1A" },
-              "layout": {
-                "widthPercentage": 100,
-                "paddingTop": 4,
-                "paddingBottom": 4,
-                "paddingStart": 0,
-                "paddingEnd": 0
-              }
+{
+  "schemaVersion": "1.0",
+  "responsiveLayouts": [
+    {
+      "minWidth": 320,
+      "dimensions": {
+        "width": 375,
+        "height": 812
+      },
+      "componentTree": {
+        "id": "adoption-basic-info-screen",
+        "componentType": "container",
+        "direction": "vertical",
+        "spacing": 0,
+        "styles": {
+          "backgroundColor": "#FFFFFF"
+        },
+        "positioning": {
+          "widthPercentage": 100,
+          "heightPercentage": 100,
+          "paddingTop": 24,
+          "paddingBottom": 24,
+          "paddingStart": 20,
+          "paddingEnd": 20,
+          "verticalAlignment": "start",
+          "horizontalAlignment": "start"
+        },
+        "children": [
+          {
+            "id": "screen-title",
+            "componentType": "text",
+            "textContent": "Formulario",
+            "styles": {
+              "fontSize": 24,
+              "fontWeight": 600,
+              "color": "#1A1A1A"
             },
-            {
-              "id": "register-form",
-              "componentType": "dynamicForm",
-              "form": {
-                "id": "register_v1",
-                "validateOn": ["blur", "submit"],
-                "layout": {
-				  "widthPercentage": 100, 
-				  "heightPercentage": 80,
-                  "fieldHeight": 48,
-                  "labelToFieldGap": 8,
-                  "fieldToHelperGap": 4,
-                  "fieldToFieldGap": 12,
-                  "buttonHeight": 48
+            "positioning": {
+              "widthPercentage": 100,
+              "paddingTop": 0,
+              "paddingBottom": 20,
+              "paddingStart": 0,
+              "paddingEnd": 0,
+              "horizontalAlignment": "center"
+            }
+          },
+          {
+            "id": "step-indicator",
+            "componentType": "container",
+            "direction": "vertical",
+            "spacing": 8,
+            "positioning": {
+              "widthPercentage": 100,
+              "paddingTop": 0,
+              "paddingBottom": 20,
+              "paddingStart": 0,
+              "paddingEnd": 0
+            },
+            "children": [
+              {
+                "id": "step-bars-row",
+                "componentType": "container",
+                "direction": "horizontal",
+                "spacing": 12,
+                "positioning": {
+                  "widthPercentage": 100
                 },
-                "fields": [
+                "children": [
                   {
-                    "id": "firstName",
-                    "type": "text",
-                    "label": "Nombre",
-                    "placeholder": "Tu nombre",
-                    "layout": { "marginTop": 0, "marginBottom": 0, "height": 48 },
-                    "validations": [
-                      { "type": "required", "message": "El nombre es obligatorio" },
-                      { "type": "minLength", "value": 2, "message": "Mínimo 2 caracteres" }
+                    "id": "step-bar-active",
+                    "componentType": "container",
+                    "direction": "vertical",
+                    "styles": {
+                      "backgroundColor": "#FF745C"
+                    },
+                    "positioning": {
+                      "widthPercentage": 48,
+                      "paddingTop": 4,
+                      "paddingBottom": 4,
+                      "paddingStart": 0,
+                      "paddingEnd": 0
+                    },
+                    "children": [
+                      {
+                        "id": "step-bar-active-spacer",
+                        "componentType": "text",
+                        "textContent": " ",
+                        "styles": {
+                          "fontSize": 1,
+                          "color": "#FF745C"
+                        },
+                        "positioning": {
+                          "widthPercentage": 100,
+                          "horizontalAlignment": "center"
+                        }
+                      }
                     ]
                   },
                   {
-                    "id": "email",
-                    "type": "email",
-                    "label": "Email",
-                    "placeholder": "tu@email.com",
-                    "layout": { "marginTop": 0, "marginBottom": 0, "height": 48 },
-                    "validations": [
-                      { "type": "required", "message": "El email es obligatorio" },
-                      { "type": "pattern", "value": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$", "message": "Formato de email inválido" },
-		      { "type": "async", "validationUrl": "https://api.example.com/validate/email", "debounce": null, "message": "Este email ya está en uso" }
+                    "id": "step-bar-inactive",
+                    "componentType": "container",
+                    "direction": "vertical",
+                    "styles": {
+                      "backgroundColor": "#F0ECE9"
+                    },
+                    "positioning": {
+                      "widthPercentage": 48,
+                      "paddingTop": 4,
+                      "paddingBottom": 4,
+                      "paddingStart": 0,
+                      "paddingEnd": 0
+                    },
+                    "children": [
+                      {
+                        "id": "step-bar-inactive-spacer",
+                        "componentType": "text",
+                        "textContent": " ",
+                        "styles": {
+                          "fontSize": 1,
+                          "color": "#F0ECE9"
+                        },
+                        "positioning": {
+                          "widthPercentage": 100,
+                          "horizontalAlignment": "center"
+                        }
+                      }
                     ]
+                  }
+                ]
+              },
+              {
+                "id": "step-labels-row",
+                "componentType": "container",
+                "direction": "horizontal",
+                "spacing": 12,
+                "positioning": {
+                  "widthPercentage": 100
+                },
+                "children": [
+                  {
+                    "id": "step-label-active",
+                    "componentType": "text",
+                    "textContent": "Información básica",
+                    "styles": {
+                      "fontSize": 14,
+                      "fontWeight": 400,
+                      "color": "#FF745C"
+                    },
+                    "positioning": {
+                      "widthPercentage": 48
+                    }
                   },
                   {
-                    "id": "password",
-                    "type": "password",
-                    "label": "Contraseña",
-                    "layout": { "marginTop": 0, "marginBottom": 0, "height": 48 },
-                    "validations": [
-                      { "type": "required", "message": "La contraseña es obligatoria" },
-                      { "type": "minLength", "value": 8, "message": "Mínimo 8 caracteres" }
-                    ]
-                  },
-                  {
-                    "id": "confirmPassword",
-                    "type": "password",
-                    "label": "Repetir contraseña",
-                    "layout": { "marginTop": 0, "marginBottom": 0, "height": 48 },
-                    "validations": [
-                      { "type": "required", "message": "Debes repetir la contraseña" },
-                      { "type": "matchesField", "field": "password", "message": "Las contraseñas no coinciden" }
-                    ]
-                  },
-                  {
-                    "id": "hasReferral",
-                    "type": "toggle",
-                    "label": "¿Tienes código de referido?"
-                  },
-                  {
-                    "id": "referralCode",
-                    "type": "text",
-                    "label": "Código de referido",
-                    "placeholder": "Ej: AMIGO2024",
-                    "layout": { "marginTop": 0, "marginBottom": 0, "height": 48 },
-                    "validations": [
-                      { "type": "required", "message": "Introduce el código de referido" }
-                    ],
-                    "visibleIf": {
-                      "field": "hasReferral",
-                      "equals": "true"
+                    "id": "step-label-inactive",
+                    "componentType": "text",
+                    "textContent": "Datos personales",
+                    "styles": {
+                      "fontSize": 14,
+                      "fontWeight": 400,
+                      "color": "#D5CFCB"
+                    },
+                    "positioning": {
+                      "widthPercentage": 48
                     }
                   }
-                ],
-                "submit": {
+                ]
+              }
+            ]
+          },
+          {
+            "id": "intro-copy",
+            "componentType": "text",
+            "textContent": "Para solicitar este animal debes rellenar el formulario. La protectora se pondrá en contacto contigo con la mayor brevedad posible.",
+            "styles": {
+              "fontSize": 16,
+              "fontWeight": 400,
+              "color": "#1A1A1A"
+            },
+            "positioning": {
+              "widthPercentage": 100,
+              "paddingTop": 0,
+              "paddingBottom": 24,
+              "paddingStart": 0,
+              "paddingEnd": 0
+            }
+          },
+          {
+            "id": "scrollable-body",
+            "componentType": "container",
+            "direction": "vertical",
+            "spacing": 0,
+            "behavior": {
+              "scroll": {
+                "enabled": true,
+                "axis": "vertical",
+                "showsIndicators": false
+              }
+            },
+            "positioning": {
+              "widthPercentage": 100,
+              "grow": 1,
+              "paddingTop": 0,
+              "paddingBottom": 0,
+              "paddingStart": 0,
+              "paddingEnd": 0
+            },
+            "children": [
+              {
+                "id": "adoption-form",
+                "componentType": "dynamicForm",
+                "positioning": {
+                  "widthPercentage": 100,
+                  "paddingTop": 0,
+                  "paddingBottom": 0,
+                  "paddingStart": 0,
+                  "paddingEnd": 0
+                },
+                "form": {
+                  "id": "adoption_basic_info_v1",
+                  "validateOn": ["blur", "submit"],
+                  "layout": {
+                    "fieldHeight": 52,
+                    "labelToFieldGap": 8,
+                    "fieldToHelperGap": 4,
+                    "fieldToFieldGap": 24,
+                    "buttonHeight": 56,
+                    "inputHorizontalPadding": 16,
+                    "inputVerticalPadding": 14,
+                    "fieldCornerRadius": 16,
+		    "paddingTop": 8
+                  },
+                  "fields": [
+                    {
+                      "id": "otherPets",
+                      "type": "text",
+                      "label": "¿Tienes otras mascotas? ¿Cuáles?",
+                      "placeholder": "Indica la respuesta",
+                      "layout": {
+                        "height": 52,
+                        "widthPercentage": 100,
+			"paddingTop": 0
+                      },
+                      "styles": {
+                        "backgroundColor": "#FFFFFF",
+                        "borderColor": "#E5DFDA",
+                        "borderWidth": 1,
+                        "textColor": "#1A1A1A",
+                        "labelColor": "#1A1A1A",
+                        "helperColor": "#FF745C",
+                        "cornerRadius": 16
+                      }
+                    },
+                    {
+                      "id": "homeType",
+                      "type": "text",
+                      "label": "¿Vives en un piso o una casa?",
+                      "placeholder": "Piso o casa",
+                      "layout": {
+                        "height": 52,
+                        "widthPercentage": 100
+                      },
+                      "styles": {
+                        "backgroundColor": "#FFFFFF",
+                        "borderColor": "#E5DFDA",
+                        "borderWidth": 1,
+                        "textColor": "#1A1A1A",
+                        "labelColor": "#1A1A1A",
+                        "helperColor": "#FF745C",
+                        "cornerRadius": 16
+                      }
+                    },
+                    {
+                      "id": "ownershipType",
+                      "type": "text",
+                      "label": "¿Vives alquilado/a o eres propietario/a?",
+                      "placeholder": "Alquiler o propiedad",
+                      "layout": {
+                        "height": 52,
+                        "widthPercentage": 100
+                      },
+                      "styles": {
+                        "backgroundColor": "#FFFFFF",
+                        "borderColor": "#E5DFDA",
+                        "borderWidth": 1,
+                        "textColor": "#1A1A1A",
+                        "labelColor": "#1A1A1A",
+                        "helperColor": "#FF745C",
+                        "cornerRadius": 16
+                      }
+                    },
+                    {
+                      "id": "outdoorSpace",
+                      "type": "text",
+                      "label": "¿Tienes patio o espacio al aire libre?",
+                      "placeholder": "Sí o no",
+                      "layout": {
+                        "height": 52,
+                        "widthPercentage": 100
+                      },
+                      "styles": {
+                        "backgroundColor": "#FFFFFF",
+                        "borderColor": "#E5DFDA",
+                        "borderWidth": 1,
+                        "textColor": "#1A1A1A",
+                        "labelColor": "#1A1A1A",
+                        "helperColor": "#FF745C",
+                        "cornerRadius": 16
+                      }
+                    },
+                    {
+                      "id": "adoptionReason",
+                      "type": "text",
+                      "label": "¿Por qué quieres adoptar una mascota?",
+                      "placeholder": "Ejemplo: Necesito compañía",
+                      "layout": {
+                        "height": 108,
+                        "widthPercentage": 100
+                      },
+                      "styles": {
+                        "backgroundColor": "#FFFFFF",
+                        "borderColor": "#E5DFDA",
+                        "borderWidth": 1,
+                        "textColor": "#1A1A1A",
+                        "labelColor": "#1A1A1A",
+                        "helperColor": "#FF745C",
+                        "cornerRadius": 16
+                      }
+                    },
+                    {
+                      "id": "coverCosts",
+                      "type": "text",
+                      "label": "¿Estás dispuesto/a a cubrir gastos veterinarios, alimentación y otros cuidados?",
+                      "placeholder": "Sí o no",
+                      "layout": {
+                        "height": 52,
+                        "widthPercentage": 100
+                      },
+                      "styles": {
+                        "backgroundColor": "#FFFFFF",
+                        "borderColor": "#E5DFDA",
+                        "borderWidth": 1,
+                        "textColor": "#1A1A1A",
+                        "labelColor": "#1A1A1A",
+                        "helperColor": "#FF745C",
+                        "cornerRadius": 16
+                      }
+                    },
+                    {
+                      "id": "travelPlan",
+                      "type": "text",
+                      "label": "Si vas de viaje, ¿qué harás con el animal?",
+                      "placeholder": "Indica la respuesta",
+                      "layout": {
+                        "height": 52,
+                        "widthPercentage": 100
+                      },
+                      "styles": {
+                        "backgroundColor": "#FFFFFF",
+                        "borderColor": "#E5DFDA",
+                        "borderWidth": 1,
+                        "textColor": "#1A1A1A",
+                        "labelColor": "#1A1A1A",
+                        "helperColor": "#FF745C",
+                        "cornerRadius": 16
+                      }
+                    }
+                  ],
+                   "submit": {
                   "label": "Siguiente",
                   "action": {
                     "type": "next",
                     "url": "https://raw.githubusercontent.com/cumpatomas/kotlin_notes/refs/heads/dynamic-forms/form2.json"
                   }
                 }
+                }
               }
-            }
-          ]
-        }
+            ]
+          }
+        ]
       }
-    ]
-  }
+    }
+  ]
+}
